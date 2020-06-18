@@ -29,22 +29,23 @@ read user_input
 
 while : ; do    # do while user_input != "x"
     case $user_input in
-	0)
+	0)    # Calculating new grade
 	    echo "Calculating new grade"
 	    ;;
-	1)
+	1)    # Recalculating pre-existing grades
 	    echo "Recalculating pre-existing grade"
 	    ;;
-	2)
+	2)    # Reading previous grades
 	    echo "Reading pre-existing grades"
+	    read_grades | less
 	    ;;
-	3)
+	3)    # Clearing all grades
 	    echo "Clearing all grades"
 	    ;;
-	x)
+	x)    # Exiting
 	    echo -e "\nExiting..."
 	    ;;
-	*)
+	*)    # default, if option given is invalid
 	    echo "Invalid option, please try again"
 	    ;;
     esac
