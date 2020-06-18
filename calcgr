@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+calculate_new_grade() {
+    echo "something"
+}
+
+recalculate_grade() {
+    echo "another something"
+}
+
+read_grades() {
+    while IFS= read -r line; do
+	echo "$line"
+    done < saved_data.txt
+}
+
+clear_grades() {
+    echo "one last something"
+}
+
+echo -e "\nSelect from one of the following options:"
+echo "  [0] Calculate new grade"
+echo "  [1] Recalculate pre-existing grade"
+echo "  [2] Read pre-existing grades"
+echo "  [3] Clear all grades"
+echo "  [x] Exit"
+echo -n "User Input: "
+read user_input
+
+while : ; do    # do while user_input != "x"
+    case $user_input in
+	0)
+	    echo "Calculating new grade"
+	    ;;
+	1)
+	    echo "Recalculating pre-existing grade"
+	    ;;
+	2)
+	    echo "Reading pre-existing grades"
+	    ;;
+	3)
+	    echo "Clearing all grades"
+	    ;;
+	x)
+	    echo -e "\nExiting..."
+	    ;;
+	*)
+	    echo "Invalid option, please try again"
+	    ;;
+    esac
+    [[ user_input == "x" ]] || break
+done	  
