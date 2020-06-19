@@ -1,7 +1,25 @@
 #!/usr/bin/env bash
 
 calculate_new_grade() {
-    echo "something"
+    declare -a all_categories           # array of all categories (i.e hw, exams, etc)
+    declare -a percentage_category      # 0'th pos in this array is weight of 0'th pos in all_category array
+    declare -a user_values
+
+    echo -n "Enter number of categories: "
+    read num_categories
+
+    echo "Enter name of each category, its respective weight (%), and your score"
+    for i in {1..num_categories}; do
+        echo -n "Category Name: "
+        read category_name
+        all_categories+=category_name   # appending category to array
+
+        echo -n "Category Weight: "
+        read category_weight
+        percentage_category+=category_weight
+    done
+
+
 }
 
 recalculate_grade() {
@@ -27,19 +45,19 @@ echo "  [1] Recalculate pre-existing grade"
 echo "  [2] Read pre-existing grades"
 echo "  [3] Clear all grades"
 echo "  [x] Exit"
-echo -n "User Input: "
+echo -n "Input: "
 read user_option
 
 while : ; do    # do while user_option != "x"
     case $user_option in
     0)    # Calculating new grade
-        echo "Calculating new grade"
+        calculate_new_grade
         ;;
     1)    # Recalculating pre-existing grades
         echo "Recalculating pre-existing grade"
         ;;
     2)    # Reading previous grades
-        read_grades | less
+        read_grades | less  # piping to another window for clarity
         ;;
     3)    # Clearing all grades
         echo -n "Type CLEAR to confirm or [x] to exit: "
